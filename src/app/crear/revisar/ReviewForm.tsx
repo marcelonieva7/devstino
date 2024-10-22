@@ -93,11 +93,11 @@ export default function ReviewForm({evilDevs, technologies }: ReviewFormProps) {
       className="flex flex-1 flex-col gap-2 items-stretch lg:max-w-[700px]"
     >
       <div className='pb-2'>
-      {photo_id ?
+      {photo_id &&
         <CldImage
           src={photo_id}
-          width="200"
-          height="200"
+          width="250"
+          height="250"
           data-loaded='false'
           className="data-[loaded=false]:animate-pulse data-[loaded=false]:bg-gray-300"
           onLoad={event => {
@@ -108,13 +108,13 @@ export default function ReviewForm({evilDevs, technologies }: ReviewFormProps) {
             loop: false,
             options: 'mode_ofr;maxzoom_2;du_4;'
           }}
-        /> : 
-        <div className='w-[100px] h-[100px] animate-pulse bg-gray-200'></div>
+        />
       }
       </div>
       <p className={clsx("text-xl text-zinc-500 md:text-3xl pb-2")}>
         Nombre: <span className={clsx("text-white/90", {"animate-pulse h-7 bg-gray-200 inline-block rounded w-1/4 relative top-1" : !dataLoaded })}>{name}</span>
       </p>
+      {photo_url &&
       <div className='flex gap-1'>
         <FormItem label="Url de la Foto" text={photo_url} isLoading={!dataLoaded} />
         <Popover open={isOpen} onOpenChange={setIsOpen}>
@@ -123,7 +123,7 @@ export default function ReviewForm({evilDevs, technologies }: ReviewFormProps) {
           </PopoverTrigger>
           <PopoverContent className='w-auto py-1 px-2 bg-gray-800 text-white align-center' side='top'>Url Copiada</PopoverContent >
         </Popover>
-      </div>
+      </div>}
       <FormItem label="Edad" text={age} isLoading={!dataLoaded} />
       <FormItem label="Tecnologia amiga" text={technologyName} isLoading={!dataLoaded} />
       <FormItem label="Perpetrador" text={evilDevName} isLoading={!dataLoaded} />

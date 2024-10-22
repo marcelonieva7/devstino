@@ -39,10 +39,11 @@ export default function StepNavigation() {
       {/* back button */}
       <Link
         href={STEPS[currentStep - 1]?.link || STEPS[0].link}
+        style={!currentStep ? {maxHeight: 0} : undefined}
         className={
           clsx(`mb-4 flex items-center gap-2 text-xl disabled:text-white/50
             lg:mb-12 lg:gap-5 max-h-[55px] transitionMaxH overflow-hidden`,
-            {"max-h-[0]": !currentStep},
+            /* {"max-h-[0px]": !currentStep}, */
             {"flicker-in-glow": !!currentStep}
           )}
       >
