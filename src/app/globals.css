@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  background-image: url("../assets/bg.svg");
+  background-image: url("/images/bg.svg");
   background-size: cover;
   background-position: top;
 }
@@ -277,4 +277,13 @@ header {
 
 .transitionMaxH {
   transition: max-height 0.35s ease-in-out;
+}
+
+#circle {
+	transition: stroke-dashoffset 300ms ease-in;
+	stroke-dashoffset: 0;
+	fill: none;
+}
+#circle.play {
+	stroke-dashoffset: 314;
 }

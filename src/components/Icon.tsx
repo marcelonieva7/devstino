@@ -1,4 +1,5 @@
 import { type MouseEventHandler } from "react";
+import clsx from "clsx";
 import Back from "./SVG/ArrowBack"
 import Copy from "./SVG/Copy"
 import Delete from "./SVG/Delete";
@@ -8,7 +9,6 @@ import LogoReact from "./SVG/React";
 import Javascript from "./SVG/Javascript";
 import Typescript from "./SVG/Typescript";
 import Wordpress from "./SVG/Wordpress";
-import clsx from "clsx";
 
 interface IconProps {
   id: IconId;
@@ -29,7 +29,6 @@ export const ICONS_MAP = {
   javascript: Javascript,
   typescript: Typescript,
   wordpress: Wordpress
-
 } as const satisfies Record<string, React.FC<React.SVGProps<SVGSVGElement>>>;
 
 export default function Icon({ id, size, className, onClick, title }: IconProps): JSX.Element {
