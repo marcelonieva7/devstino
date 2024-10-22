@@ -32,6 +32,7 @@ export default function DestinationText(props: Props) {
     } else {
       typeText(description, TYPING_DELAY)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [description])
 
   return (
