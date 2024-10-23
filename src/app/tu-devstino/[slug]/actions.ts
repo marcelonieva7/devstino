@@ -16,6 +16,7 @@ export async function generateDescription(devstino: DevstinationDTO) {
     const { textStream, text } = await streamText({
       model: google('gemini-1.5-flash'),
       prompt: getPrompt(devstino),
+      system: "La descripcion que vas a generar no debe superar los 500 caracteres"
     });
 
     for await (const delta of textStream) {
