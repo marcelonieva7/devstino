@@ -4,6 +4,7 @@ import DestinationImg from "./components/DestinationImg";
 import type { Metadata } from 'next'
 import { getCldOgImageUrl } from "next-cloudinary";
 import Delete from "./components/Delete";
+import Share from "./components/Share";
  
 type Props = {
   params: Promise<{ slug: string }>
@@ -39,7 +40,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
   
   return (
     <div className="w-full px-2 lg:px-0 text-white">
-      <Delete id={$id} userId={user_id} />
+      <div className="flex justify-end mt-5 gap-6 items-center flicker-in-glow">
+        <Share name={name} />
+        <Delete id={$id} userId={user_id} />
+      </div>
       <div>
         <h1 className="text-4xl lg:text-5xl font-se7en text-zinc-300">{name}</h1>
         <DestinationImg photo_id={photo_id} name={name} />

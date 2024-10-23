@@ -29,8 +29,7 @@ export default function Delete({id, userId}: { id: string, userId: string }) {
     router.push(redirect)
   }
   return (dataLoaded && isOwner) && (
-    <div className="flex justify-end mt-8 flicker-in-glow">
-      <AlertDialog>
+    <AlertDialog>
       <AlertDialogTrigger>
         <Icon id="delete" title="Eliminar Devstino" size={45} className="fill-red-800 hover:fill-red-600"/>
       </AlertDialogTrigger>
@@ -47,6 +46,5 @@ export default function Delete({id, userId}: { id: string, userId: string }) {
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-    </div>
   )
 }
