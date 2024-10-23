@@ -20,6 +20,13 @@ const WIDGET_OPTIONS: CloudinaryUploadWidgetOptions = {
   sources: ['camera', 'local', 'google_drive', 'url'],
   maxFiles: 1,
   multiple: false,
+  resourceType: 'image',
+  cropping: true,
+  showSkipCropButton: false,
+  croppingAspectRatio: 1,
+  maxImageWidth: 1200,
+  minImageWidth: 800,
+  croppingShowDimensions: true,
 } as const
 
 const initialState: FormErrors = {};
@@ -58,10 +65,9 @@ export default function StepTwoForm() {
     }
   }, [isOpen]);
 
-  const handleSuccess: CldUploadWidgetProps['onSuccess'] = (result, widget) => {
+  const handleSuccess: CldUploadWidgetProps['onSuccess'] = (result) => {
     const { public_id, url } = result.info as CloudinaryUploadWidgetInfo
-    updateNewDestinationDetails({photo_url: url, photo_id: public_id})
-    widget.close()
+    updateNewDestinationDetails({photo_url: url, photo_id: public_id})    
   }
 
   const handleCopy = () => {
@@ -96,12 +102,13 @@ export default function StepTwoForm() {
         }}
       </CldUploadWidget>
       {isUploadedPhoto && (
-        <div className='flex gap-2 items-center justify-between'>
+        <div className='flex gap-2 items-center justify-evenly'>
           <CldImage
             src={newDestinationData.photo_id ?? ''}
-            width="600"
-            height="600"
+            width="300"
+            height="300"
             alt='Foto del usuario'
+            crop={'fill'}
             data-loaded='false'
             className="data-[loaded=false]:animate-pulse data-[loaded=false]:bg-gray-300"
             onLoad={event => {

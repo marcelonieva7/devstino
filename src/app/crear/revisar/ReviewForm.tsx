@@ -92,14 +92,14 @@ export default function ReviewForm({evilDevs, technologies }: ReviewFormProps) {
       action={handleFormSubmit}
       className="flex flex-1 flex-col gap-2 items-stretch lg:max-w-[700px]"
     >
-      <div className='pb-2'>
+      <div className='pb-2 my-0 mx-auto'>
       {photo_id &&
         <CldImage
           src={photo_id}
-          width="250"
-          height="250"
+          width="300"
+          height="300"
           data-loaded='false'
-          className="data-[loaded=false]:animate-pulse data-[loaded=false]:bg-gray-300"
+          className="data-[loaded=false]:animate-pulse data-[loaded=false]:bg-gray-300 max-[380px]:h-[200px] max-[380px]:w-[200px] md:h-[300px] md:w-[300px]"
           onLoad={event => {
             event.currentTarget.setAttribute('data-loaded', 'true')
           }}
