@@ -40,7 +40,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   
   return (
     <div className="w-full px-2 lg:px-0 text-white">
-      <div className="flex justify-end mt-5 gap-6 items-center flicker-in-glow">
+      <div className="flex justify-end sm:mt-3 gap-6 items-center flicker-in-glow">
         <Share name={name} />
         <Delete id={$id} userId={user_id} />
       </div>
