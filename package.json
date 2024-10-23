@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@ai-sdk/google": "^0.0.51",
+    "@radix-ui/react-alert-dialog": "^1.1.2",
     "@radix-ui/react-popover": "^1.1.2",
     "@radix-ui/react-radio-group": "^1.2.1",
     "@radix-ui/react-select": "^2.1.2",
+    "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.2",
     "ai": "^3.4.9",
     "appwrite": "^16.0.2",

@@ -7,6 +7,7 @@ import { devstinationRepository } from '@/lib/db';
 import { type DevstinationDTO } from '@/types';
 import { revalidatePath } from 'next/cache';
 import { getPrompt } from '@/lib/utils';
+import { ROUTES } from '@/enums';
 
 export async function generateDescription(devstino: DevstinationDTO) {  
   const stream = createStreamableValue('');
@@ -28,4 +29,11 @@ export async function generateDescription(devstino: DevstinationDTO) {
   revalidatePath('/tu-devstino/[slug]', 'page')
 
   return { output: stream.value };
+}
+
+export async function deleteDevstino(id: string) {
+  await devstinationRepository.update(id, {isDeleted: true})
+  revalidatePath('/tu-devstino/[slug]', 'page')
+  return {
+    redirect: ROUTES.HOME}
 }
