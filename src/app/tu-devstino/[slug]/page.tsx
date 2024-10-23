@@ -8,8 +8,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
   
   return (
     <div className="w-full px-2 lg:px-0 text-white">
-      <h1 className="text-4xl lg:text-5xl font-se7en text-zinc-300">{name}</h1>
-      <DestinationImg photo_id={photo_id} />
+      <div>
+        <h1 className="text-4xl lg:text-5xl font-se7en text-zinc-300">{name}</h1>
+        <DestinationImg photo_id={photo_id} name={name} />
+      </div>
       <DestinationText {... devstinoDTO} />
     </div>
   );

@@ -36,9 +36,9 @@ export default function DestinationText(props: Props) {
   }, [description])
 
   return (
-    <div>
-      <h1 className='text-4xl text-zinc-300 mb-3'>Tu DevStino</h1>
+    <>
+      <h1 className='text-4xl text-zinc-300 mb-3 min-[680px]:my-7'>DevStino</h1>
       <p className="lg:text-lg">{generation}</p>
-    </div>
+    </>
   );
 }
