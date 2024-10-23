@@ -1,6 +1,39 @@
 import { devstinationRepository } from "@/lib/db";
 import DestinationText from "./components/DestinationText";
 import DestinationImg from "./components/DestinationImg";
+import type { Metadata } from 'next'
+import { getCldOgImageUrl } from "next-cloudinary";
+ 
+type Props = {
+  params: Promise<{ slug: string }>
+}
+ 
+export async function generateMetadata(
+  { params }: Props
+): Promise<Metadata> {
+  const { slug } = (await params)
+ 
+  const [devstinoDTO] = await devstinationRepository.getBySlug(slug);
+  const { name, description, photo_id } = devstinoDTO
+
+  const url = getCldOgImageUrl({
+    src: photo_id,
+  })
+  
+ 
+  return {
+    title: `DevStino - ${name}`,
+    description: description ? `${description.slice(0, 20)}...` : `Conoce el DevStino Final de ${name}`,
+    openGraph: {
+      images: [{
+        url: url,
+        width: 600,
+        height: 600
+      }],
+    },
+  }
+}
+
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const [devstinoDTO] = await devstinationRepository.getBySlug(params.slug);

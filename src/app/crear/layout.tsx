@@ -1,6 +1,13 @@
 import PageHeader from "@/components/PageHeader";
 import StepNavigation from "@/components/StepNavigation";
 import { AddDestinationContextProvider } from "@/context/addDestination";
+import type { Metadata } from 'next'
+ 
+export const metadata: Metadata = {
+  title: 'DevStino Final - Crear',
+  description: 'Ingresa tus datos y preparate para enfrentar tu futuro',
+}
+
 
 export default function AddLayout({
   children,

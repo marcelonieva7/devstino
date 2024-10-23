@@ -19,7 +19,7 @@ const se7en = localFont({
 
 
 export const metadata: Metadata = {
-  title: "Devstino",
+  title: "DevStino Final",
   description: "Donde te encuentras con tu futuro",
 };
 
@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es-AR">
       <body
         className={`${se7en.variable} ${lacquer.variable} ${specialElite.variable} font-specialElite antialiased bg-black`}
       >
