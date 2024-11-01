@@ -7,6 +7,7 @@ const ROUTES = {
   },
   HOME: "/",
   DEVSTINO: "/tu-devstino",
+  EDIT: "/editar"
 } as const
 
 const COLLECTIONS_ID = {

@@ -18,7 +18,7 @@ export type Devstination = {
   age: number,
   slug: string,
   photo_id: string,
-  description?: string,
+  description?: string | null,
   evilDev: EvilDevs[] | string[],
   technology: Technology[] | string[],
 }
