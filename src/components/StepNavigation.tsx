@@ -1,6 +1,5 @@
 'use client';
 import Icon from '@/components/Icon';
-//import { useRouter } from 'next/navigation';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -28,7 +27,7 @@ function isSamePath (currentPath: string, link: string):boolean {
 export default function StepNavigation() {
   const pathname = usePathname();
   const currentPath = path.basename(pathname);
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(0);
 
   useEffect(() => {
     setCurrentStep(STEPS.findIndex((step) => isSamePath(currentPath, step.link)));
@@ -39,13 +38,12 @@ export default function StepNavigation() {
       {/* back button */}
       <Link
         href={STEPS[currentStep - 1]?.link || STEPS[0].link}
-        style={!currentStep ? {maxHeight: 0} : undefined}
-        className={
-          clsx(`mb-4 flex items-center gap-2 text-xl disabled:text-white/50
-            lg:mb-12 lg:gap-5 max-h-[55px] transitionMaxH overflow-hidden`,
-            /* {"max-h-[0px]": !currentStep}, */
-            {"flicker-in-glow": !!currentStep}
-          )}
+        style={!!currentStep ? {maxHeight: "55px"} : undefined}
+        className={clsx(`
+          mb-4 flex items-center gap-2 text-xl disabled:text-white/50
+          lg:mb-12 lg:gap-5 transitionMaxH max-h-[0px] overflow-hidden`,
+          {"flicker-in-glow": !!currentStep}
+        )}
       >
         <Icon id="arrowBack" size={55} title='Volver atras' />
       </Link>
@@ -61,7 +59,8 @@ export default function StepNavigation() {
           >
             <span
               className={clsx(
-                'flex h-10 w-10 items-center justify-center rounded-full border text-sm font-se7en transition-colors duration-200 lg:h-12 lg:min-w-12 lg:text-lg',
+                `flex h-10 w-10 items-center justify-center rounded-full border text-sm font-se7en 
+                transition-colors duration-200 lg:h-12 lg:min-w-12 lg:text-lg`,
                 {
                   'border-none bg-red-800 text-black group-hover:border-none group-hover:text-black':
                     isSamePath(currentPath, step.link),
