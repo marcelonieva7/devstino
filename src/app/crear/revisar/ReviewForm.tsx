@@ -12,6 +12,7 @@ import { EvilDevsDTO, TechnologyDTO } from '@/types';
 import { CldImage } from 'next-cloudinary';
 import Icon from '@/components/Icon';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/Popover';
+import { generatePlaceHolder } from '@/app/actions';
 
 type FormItemProps = {
   label: string;
@@ -39,10 +40,17 @@ export default function ReviewForm({evilDevs, technologies }: ReviewFormProps) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { toast } = useToast();
+  const [ blurData, setBlurData ] = useState<string | undefined>(undefined)
   const { newDestinationData, resetLocalStorage, dataLoaded } = useAddDestinationContext();
   const { userData, dataLoaded: userDataLoaded , updateUserData} = useUserDataContext();
 
-  const { name, age, perpetrator_id, photo_url, technology_id, photo_id } = newDestinationData
+  const { name, age, perpetrator_id, photo_url, technology_id, photo_id } = newDestinationData;
+  
+  useEffect(() => {
+    if (dataLoaded && photo_id) {
+      generatePlaceHolder(photo_id).then(setBlurData).catch(console.error);
+    }
+  }, [dataLoaded, photo_id])
 
   useEffect(() => {
     if (isOpen) {
@@ -54,7 +62,10 @@ export default function ReviewForm({evilDevs, technologies }: ReviewFormProps) {
   }, [isOpen]);
 
   const handleFormSubmit = async () => {
-    const res = await submitDestinationAction(newDestinationData as NewDestinationType, userData.id as string);
+    const res = await submitDestinationAction(
+      newDestinationData as NewDestinationType,
+      userData.id as string
+    );
     const { redirect, errorMsg, success, slug } = res;
 
     if (success) {
@@ -93,7 +104,7 @@ export default function ReviewForm({evilDevs, technologies }: ReviewFormProps) {
       className="flex flex-1 flex-col gap-2 items-stretch lg:max-w-[700px]"
     >
       <div className='pb-2 my-0 mx-auto'>
-      {photo_id &&
+      {photo_id ?
         <CldImage
           src={photo_id}
           width="300"
@@ -108,7 +119,11 @@ export default function ReviewForm({evilDevs, technologies }: ReviewFormProps) {
             loop: false,
             options: 'mode_ofr;maxzoom_2;du_4;'
           }}
-        />
+          blurDataURL={blurData}
+          placeholder={blurData ? "blur" : "empty"}
+        /> : (
+          <Icon id='user' size={300} className="max-[380px]:h-[200px] max-[380px]:w-[200px] md:h-[300px] md:w-[300px]" />
+        )
       }
       </div>
       <p className={clsx("text-xl text-zinc-500 md:text-3xl pb-2")}>
@@ -121,7 +136,7 @@ export default function ReviewForm({evilDevs, technologies }: ReviewFormProps) {
           <PopoverTrigger>
             <Icon id="copy" size={25} onClick={handleCopy} title='Copiar Url de la foto'/>
           </PopoverTrigger>
-          <PopoverContent className='w-auto py-1 px-2 bg-gray-800 text-white align-center' side='top'>Url Copiada</PopoverContent >
+          <PopoverContent style={{background: "rgb(31 41 55 / 1)"}} className='w-auto py-1 px-2 bg-gray-800 text-white align-center' side='top'>Url Copiada</PopoverContent >
         </Popover>
       </div>}
       <FormItem label="Edad" text={age} isLoading={!dataLoaded} />

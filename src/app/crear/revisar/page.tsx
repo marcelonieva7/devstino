@@ -7,7 +7,7 @@ export default async function Page() {
   
   return (
     <div>
-      <ReviewForm evilDevs={evilDevs} technologies={technologies} />
+      <ReviewForm evilDevs={evilDevs} technologies={technologies}/>
     </div>
   );
 }

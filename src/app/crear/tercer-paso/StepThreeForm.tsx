@@ -18,14 +18,11 @@ import { useEffect, useRef, useState } from 'react';
 import { useUserDataContext } from '@/context/user';
 import { redirect } from 'next/navigation';
 import { ROUTES } from '@/enums';
+import { getRandomValueId } from '@/lib/utils';
 
 type Props = { evilDevs: Pick<EvilDevsDTO, ('name' | '$id')>[] }
 
 const initialState: FormErrors = {};
-
-function getRandomValueId<K extends {$id: string}>(arr: K[]): K['$id'] {
-  return arr[Math.floor(Math.random() * arr.length)].$id
-}
 
 export default function StepThreeForm({ evilDevs }: Props) {
   const { updateNewDestinationDetails, newDestinationData, dataLoaded } = useAddDestinationContext();
