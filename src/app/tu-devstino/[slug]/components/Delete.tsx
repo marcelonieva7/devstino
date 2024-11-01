@@ -16,7 +16,7 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 
-export default function Delete({id, userId}: { id: string, userId: string }) {
+export default function Delete({id, userId, slug}: { id: string, userId: string, slug: string }) {
   const { userData, dataLoaded, updateUserData } = useUserDataContext();
   const isOwner = userData.id === userId;
   const { toast } = useToast()
@@ -24,7 +24,7 @@ export default function Delete({id, userId}: { id: string, userId: string }) {
 
   const handleDelete = async () => {
     toast({title: "Eliminando tu devstino..", variant: "default"})
-    const { redirect } = await deleteDevstino(id)
+    const { redirect } = await deleteDevstino(id, slug)
     updateUserData({devstinationSlug: ""})
     router.push(redirect)
   }

@@ -4,7 +4,7 @@ export const stepOneSchema = z.object({
   name: z
     .string()
     .min(3, 'Tipea al menos tres letras vago')
-    .max(50, '¿Para que queres mas de 50 caracteres? Dale'),
+    .max(15, '¿Para que queres mas de 15 caracteres? Dale'),
   age: z
     .coerce
     .number()
@@ -37,7 +37,13 @@ export const newDestinationInitialValuesSchema = z.object({
   perpetrator_id: z.string().optional(),
 });
 
+export const editDestinationInitialValuesSchema = newDestinationInitialValuesSchema.required();
+
 export type NewDestinationType = z.infer<typeof newDestinationSchema>;
 export type NewDestinationInitialValuesType = z.infer<
   typeof newDestinationInitialValuesSchema
+>;
+
+export type EditDestinationInitialValuesType = z.infer<
+  typeof editDestinationInitialValuesSchema
 >;
