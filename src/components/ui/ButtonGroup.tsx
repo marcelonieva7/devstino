@@ -5,25 +5,16 @@ import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import Icon from "@/components/Icon";
 
 import { cn } from "@/lib/utils";
-import { useAddDestinationContext } from "@/context/addDestination";
-import { type NewDestinationType } from "@/schemas/destination";
 
 const ButtonGroup = React.forwardRef<
   (React.ElementRef<typeof RadioGroupPrimitive.Root>),
-  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root> & { errorMsg?: string, name: keyof NewDestinationType }
+  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root> & { errorMsg?: string}
 >(({ className, errorMsg, ...props }, ref,) => {
-  const { updateNewDestinationDetails, newDestinationData } = useAddDestinationContext()
-
-  const handleValueChange = (value: string) => {
-    updateNewDestinationDetails({[props.name]: value})
-  }
   return (
     <>
     <RadioGroupPrimitive.Root
       className={cn("flex gap-5", className)}
       {...props}
-      value={String(newDestinationData[props.name])}
-      onValueChange={handleValueChange}
       ref={ref}
     />
     <div className="min-h-8 mt-1">
