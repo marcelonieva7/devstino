@@ -13,6 +13,7 @@ const config: Config = {
 				se7en: ["var(--font-se7en)"],
 				lacquer: ["var(--font-lacquer)"],
 				specialElite: ["var(--font-specialElite)"],
+				gotHeroin: ["var(--font-gotHeroin)"]
 			},
   		colors: {
   			background: 'hsl(var(--background))',
