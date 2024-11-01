@@ -10,6 +10,8 @@ import Javascript from "./SVG/Javascript";
 import Typescript from "./SVG/Typescript";
 import Wordpress from "./SVG/Wordpress";
 import IconShare from "./SVG/Share";
+import User from "./SVG/User";
+import Edit from "./SVG/Edit";
 
 interface IconProps {
   id: IconId;
@@ -30,7 +32,9 @@ export const ICONS_MAP = {
   javascript: Javascript,
   typescript: Typescript,
   wordpress: Wordpress,
-  share: IconShare
+  share: IconShare,
+  user: User,
+  edit: Edit
 } as const satisfies Record<string, React.FC<React.SVGProps<SVGSVGElement>>>;
 
 export default function Icon({ id, size, className, onClick, title }: IconProps): JSX.Element {
