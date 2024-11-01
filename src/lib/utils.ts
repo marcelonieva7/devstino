@@ -21,6 +21,10 @@ export const slugify = (str: string) => {
 
 export const wait = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms))
 
+export function getRandomValueId<K extends {$id: string}>(arr: K[]): K['$id'] {
+  return arr[Math.floor(Math.random() * arr.length)].$id
+}
+
 export const getPrompt = ({ name, technology, evilDev,age }: DevstinationDTO) => (`
   Escribe una descrpcion de la "muerte" de ${name}, un usuario desarrollador de ${age} años,
    que usa ${technology[0].name} como tecnologia favorita. El perpetrador del "asesinato" es ${evilDev[0].name}
